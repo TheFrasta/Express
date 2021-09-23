@@ -4,6 +4,8 @@ const app = express();
 
 //middlewares
 
+app.use(express.json());
+
 app.use(function(req,res,next){
 
 console.log('request url:' + request.url)
@@ -19,13 +21,43 @@ next();
 //rutas
 app.get('/', (req,res) =>{
 
-res.send('Hola mundo');
+res.send('<h1>Hola mundo<h2>');
 
 });
 
 app.get('/register', (req,res) => {
 
     res.send('Aqui te puedes registrar');
+});
+
+app.put('/login', (req,res) => {
+
+    res.send('Aqui te puedes loguear');
+});
+
+
+app.delete('/about us', (req,res) => {
+
+    res.send('Aqui tendras informacion sobre nosotros');
+});
+
+app.get('/user', (req,res) => {
+
+res.json({
+
+username: 'John',
+lastname: 'Sanchez',
+
+});
+
+
+});
+
+app.post('/user/:id', (req,res) => {
+
+    console.log(req.body);
+    console.log(req.params)
+    res.send('EL POST HA SIDO SOLICITADO');
 });
 
 app.listen(3000, function() {
