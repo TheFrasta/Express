@@ -1,10 +1,21 @@
+const { request } = require('express');
 const express = require('express');
 const app = express();
 
 //middlewares
 
+app.use(function(req,res,next){
 
+console.log('request url:' + request.url)
+next();
+});
 
+app.use((req,res, next)=>{
+
+console.log('Aqui ha pasado por Esta funcion');
+next();
+
+})
 //rutas
 app.get('/', (req,res) =>{
 
